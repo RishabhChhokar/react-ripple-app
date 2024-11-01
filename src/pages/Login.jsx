@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const {loading, error} = useSelector((state) => state.auth);
 
-  const [alreadyLogged, setLogged] = useState(true);
+  const [alreadyLogged, setAlreadyLoggedIn] = useState(true);
 
   const {
     register,
@@ -26,7 +26,7 @@ const Login = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setLogged(false);
+      setAlreadyLoggedIn(false);
       if (user) {
         navigate("/"); 
       }

@@ -6,13 +6,14 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { db } from "../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 const Register = () => {
   const navigate = useNavigate();
   const [authError, setAuthError] = useState(null);
-  const [alreadyLogged, setLogged] = useState(true);
+  const [alreadyLogged, setAlreadyLoggedIn] = useState(true);
 
   const {
     register,
@@ -29,7 +30,7 @@ const Register = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setLogged(false);
+      setAlreadyLoggedIn(false);
       if (user) {
         navigate("/");
       }
@@ -56,9 +57,10 @@ const Register = () => {
         email,
         name,
         registeredAt: new Date().toISOString(),
-      });
+      })
 
-      navigate("/login");
+      await signOut(auth);
+      navigate("/");
     } catch (error) {
       console.error(error.message);
       setAuthError("Registration failed. Try again.");

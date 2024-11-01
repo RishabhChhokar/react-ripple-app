@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../slices/authSlice";
+import { Link } from "react-router-dom";
 
 const MainNavigation = () => {
   const navigate = useNavigate();
@@ -20,11 +21,11 @@ const MainNavigation = () => {
   };
 
   return (
-    <div className="navbar rounded-lg bg-gray-700">
+    <div className="navbar rounded-lg">
       <div className="navbar-start">
-        <a className="navbar-item" href="/">
+        <Link className="btn btn-ghost text-lg" to={"/"}>
           Analytica
-        </a>
+        </Link>
       </div>
       <div className="navbar-end">
         <div className="avatar avatar-ring avatar-md">
@@ -42,13 +43,13 @@ const MainNavigation = () => {
               <div className="dropdown-menu dropdown-menu-bottom-left w-40">
                 {user ? (
                   <>
-                    <a
+                    <Link
                       tabIndex="-1"
                       className="dropdown-item text cursor-pointer"
-                      href="/user-list"
+                      to={"/user-list"}
                     >
                       Users
-                    </a>
+                    </Link>
                     <a
                       tabIndex="-1"
                       className="dropdown-item text-error cursor-pointer"

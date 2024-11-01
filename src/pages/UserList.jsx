@@ -41,37 +41,40 @@ const UserList = () => {
   }
 
   return isLoggedIn ? (
-    <div className="mx-auto w-full max-w-4xl">
-      <h1 className="text-xl font-semibold mb-2">Users List</h1>
-      <table className="table w-full">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.length === 0 ? (
-            <tr>
-              <td colSpan="2" className="text-center">
-                No users found
-              </td>
-            </tr>
-          ) : (
-            users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
+    <div className="min-h-screen bg-gradient-to-b from-violet-300 to-teal-200 pt-10">
+      <div className="mx-auto w-full max-w-4xl bg-black p-6 rounded-lg shadow-lg">
+        <h1 className="text-xl font-semibold mb-2 text-white">Users List</h1>
+        <div className="overflow-x-auto">
+          <table className="table w-full text-white">
+            <thead>
+              <tr>
+                <th className="text-left">Name</th>
+                <th className="text-left">Email</th>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {users.length === 0 ? (
+                <tr>
+                  <td colSpan="2" className="text-center">
+                    No users found
+                  </td>
+                </tr>
+              ) : (
+                users.map((user) => (
+                  <tr key={user.id}>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  ) :
-    (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
-      <div className="card card-image-cover">
+  ) : (
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-violet-300 to-teal-200">
+      <div className="card card-image-cover h-80 sm:h-96 md:h-1/2">
         <div className="card-body">
           <p className="text-content2 text-center">
             Please Sign In to access users List.
@@ -84,7 +87,7 @@ const UserList = () => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default UserList;
